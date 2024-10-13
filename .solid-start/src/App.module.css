@@ -38,12 +38,12 @@
 #events {
   max-width: 360px;
   margin: 2% auto;
-  transform: scale(0.8);
 }
 
 .event {
   border: 1px solid black;
   /* font-size: calc(10px + 2vmin); */
+  font-size: small;
   color: black;
   overflow-y: scroll;
   margin: 0 auto;
@@ -74,7 +74,8 @@
 }
 
 .buffer {
-  background: linear-gradient(90deg, #f0f0f0, #f0f0f0);
+  /* background: linear-gradient(90deg, #f0f0f02a, #f0f0f03b); */
+  background-color: transparent;
   border: 1px solid black;
   padding: 10px;
   /* font-size: calc(10px + 2vmin); */
@@ -99,4 +100,13 @@
       cursor: pointer;
     }
   }
+}
+
+#root{
+  display: flex;
+}
+
+.action{
+  border: solid 1px black;
+  padding: 10px;
 }

@@ -14,10 +14,48 @@ let dragging = null
 let toSwap = null
 
 
+const [actions, setActions] = createSignal(JSON.parse(localStorage.getItem("actions") || "[]"))
+
+
+createEffect(() => {
+  localStorage.setItem("actions", JSON.stringify(actions()))
+})
+
+
+function Actions_log(){
+  return (
+    <div id="actions">
+      {actions().map((action) => <div className="action">
+        <Action   action={action}  />
+      </div>)}
+    </div>
+  )
+}
+
+function undo(){
+  const latest_action = actions().pop()
+  setActions([...actions()])
+  if (latest_action.type == "swap"){
+    const ev = [...events()]
+    const {swapped} = latest_action
+    ev[swapped[0]] = events()[swapped[1]]
+    ev[swapped[1]] = events()[swapped[0]]
+    setEvents(ev);
+  } else if (latest_action.type == "plus"){
+    events()[latest_action.index_of_changed_event].total_time-=latest_action.amount
+    setEvents([...events()])
+  } else if (latest_action.type == "minus"){
+    events()[latest_action.index_of_changed_event].total_time+=latest_action.amount
+    setEvents([...events()])
+  }
+}
+
+
 createEffect(() => {
   console.log(`events have changed`);
   console.table(events());
   cur_time = day_start_time;
+  console.table(actions())
 });
 
 createEffect(() => {
@@ -36,21 +74,25 @@ function Event({ event, index }) {
       <div
         class={styles.event}
         draggable={true}
-        style={`height: ${event.total_time}px; background-color: ${!allowed? "red": "white"}`}
+        style={`height: ${event.total_time/2}px; background-color: ${!allowed? "red": "white"}`}
         onDragStart={(e) => {
           // document.body.style.cursor = "grabbing";
           dragging = index
         }}
         ondragover={(e) => {
           if (dragging == index) {
-            return
+            //let it do so as the users way of canceling
           }
           toSwap = [index, dragging]
           
         }}
         ondragend={(e) => {
-          const el = e.target
           const ev = [...events()]
+          setActions([...actions(), {
+            type: "swap",
+            swapped: toSwap,
+            time: new Date()
+          }])
           ev[toSwap[0]] = events()[toSwap[1]]
           ev[toSwap[1]] = events()[toSwap[0]]
           setEvents(ev);
@@ -64,8 +106,17 @@ function Event({ event, index }) {
             <button
               onclick={() => {
                 event.total_time -= 10;
+                actions().push({
+                  type: "minus",
+                  amount: 10,
+                  index_of_changed_event: index,
+                  event_name: event.name, // for confirmation
+                  time: new Date()
+                })
+                setActions([...actions()])
                 setEvents([...events()]);
               }}
+              
               >
               -
             </button>
@@ -74,6 +125,14 @@ function Event({ event, index }) {
             <button
               onclick={() => {
                 event.total_time += 10;
+                actions().push({
+                  type: "plus",
+                  amount: 10,
+                  index_of_changed_event: index,
+                  event_name: event.name, // for confirmation
+                  time: new Date()
+                })
+                setActions([...actions()])
                 setEvents([...events()]);
               }}
             >
@@ -112,8 +171,9 @@ function Event({ event, index }) {
 
 export default function App() {
   return (
-    <>
-      <div className="holding" style={`color: red`}></div>
+    <div id={styles.root}>
+      <button onclick={() => undo()}>undo</button>
+      <Actions_log/>
       <div id={styles.events}>
         {events().map((event, index) => (
           <>
@@ -124,7 +184,7 @@ export default function App() {
           </>
         ))}
       </div>
-    </>
+    </div>
   );
 
   function Buffer({ event, index }) {
@@ -132,7 +192,7 @@ export default function App() {
       <div
         className={styles.buffer}
         style={`height: ${
-          (events()[index + 1].location[1] - event.location[1])
+          (events()[index + 1].location[1] - event.location[1])/2
         }px`}
       >
         <p>
@@ -148,3 +208,41 @@ export default function App() {
     );
   }
 }
+
+    function Action({action}) {
+      let el
+      if (action.type == "swap"){
+       
+
+        el =  (<>
+         <div className={styles.action}>
+          
+          <p>swapped {action.swapped[0]} with {action.swapped[1]}</p>
+          <details>
+            <summary>time</summary>
+            <p>{action.time}</p>
+          </details>
+          </div>
+        </>
+        );
+        } else if(action.type == "plus") {
+          el = <div className={styles.action}>
+            
+            added: {action.amount} to event #{action.index_of_changed_event}
+            <details>
+            <summary>time</summary>
+            <p>{action.time}</p>
+          </details>
+          </div>
+        } else if(action.type == "minus") {
+          el = <div className={styles.action}>
+            removed: {action.amount} from event #{action.index_of_changed_event}
+            <details>
+            <summary>time</summary>
+            <p>{action.time}</p>
+          </details>
+          </div>
+        } 
+        return el
+    }
+  
