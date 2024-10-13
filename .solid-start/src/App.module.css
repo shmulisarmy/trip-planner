@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 0px;
+}
+
+.link {
+  color: #b318f0;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+#events {
+  max-width: 360px;
+  margin: 2% auto;
+  transform: scale(0.8);
+}
+
+.event {
+  border: 1px solid black;
+  /* font-size: calc(10px + 2vmin); */
+  color: black;
+  overflow-y: scroll;
+  margin: 0 auto;
+  position: relative;
+
+  header{
+    display: flex;
+    background-color: rgb(152, 140, 140);
+    position: sticky;
+    top: 0%;
+    width: 100%;
+    h2{
+      text-shadow: 4px 3px 3px;
+      text-align: center;
+    }
+
+  }
+
+  .other{
+    padding: 10px;
+  }
+
+  details{
+    > * {
+      padding: 10px;
+    }
+  }
+}
+
+.buffer {
+  background: linear-gradient(90deg, #f0f0f0, #f0f0f0);
+  border: 1px solid black;
+  padding: 10px;
+  /* font-size: calc(10px + 2vmin); */
+  color: black;
+  overflow-y: scroll;
+
+}
+
+.total_time{
+  display: flex;
+  align-items: center;
+
+  font-size: small;
+
+  button{
+    border: none;
+    background: none;
+    color: greenyellow;
+    font-size: x-large;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
