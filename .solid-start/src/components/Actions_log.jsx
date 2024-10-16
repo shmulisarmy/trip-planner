@@ -1,3 +1,6 @@
+import {actions} from "../utils/undo.js"
+import {Action_component} from "./Action.jsx"
+
 function Actions_log(){
     return (
       <div id="actions">

@@ -7,10 +7,10 @@ import { events, setEvents } from "./data.js";
 import {Buffer} from "./components/buffer.jsx";
 import {actions, setActions, undo} from "./utils/undo.js"
 import {Action_component} from "./components/Action.jsx"
+import {Actions_log} from "./components/Actions_log.jsx"
 
 
 
-import traveling_image from "./assets/favicon.ico";
 
 
 const day_start_time = 50;
@@ -29,15 +29,7 @@ createEffect(() => {
 })
 
 
-function Actions_log(){
-  return (
-    <div id="actions">
-      {actions().map((action) => <div className="action">
-        <Action_component   action={action}  />
-      </div>)}
-    </div>
-  )
-}
+
 
 
 
