@@ -4,6 +4,10 @@ import { createSignal, createEffect } from "solid-js";
 import { For } from "solid-js/web";
 import { getDistance } from "./utils";
 import { events, setEvents } from "./data.js";
+import {Buffer} from "./components/buffer.jsx";
+
+import traveling_image from "./assets/favicon.ico";
+
 
 const day_start_time = 50;
 
@@ -74,7 +78,7 @@ function Event({ event, index }) {
       <div
         class={styles.event}
         draggable={true}
-        style={`height: ${event.total_time/2}px; background-color: ${!allowed? "red": "white"}`}
+        style={`height: ${event.total_time/2}px;`}
         onDragStart={(e) => {
           // document.body.style.cursor = "grabbing";
           dragging = index
@@ -102,7 +106,7 @@ function Event({ event, index }) {
       >
         <header >
             <h2 style={`color: ${event.color}`}>{event.name}</h2>
-          <div className={styles.total_time}>
+          <div className={styles.controls}>
             <button
               onclick={() => {
                 event.total_time -= 10;
@@ -138,6 +142,7 @@ function Event({ event, index }) {
             >
               +
             </button>
+
           </div>
         </header>
 
@@ -152,6 +157,9 @@ function Event({ event, index }) {
           <p>start time: {Math.round(cur_time)}</p>
           <p>end time: {Math.round(cur_time + event.total_time)}</p>
         </div>
+
+        {!allowed? <p className={styles.not_allowed}>it seems as thought you are not able to atebd this event</p>: ""}
+
       </div>
     );
     if (index < events().length - 1) {
@@ -187,26 +195,6 @@ export default function App() {
     </div>
   );
 
-  function Buffer({ event, index }) {
-    return (
-      <div
-        className={styles.buffer}
-        style={`height: ${
-          (events()[index + 1].location[1] - event.location[1])/2
-        }px`}
-      >
-        <p>
-          distance:{" "}
-          {getDistance(
-            event.location[0],
-            event.location[1],
-            events()[index + 1].location[0],
-            events()[index + 1].location[1]
-          )}
-        </p>
-      </div>
-    );
-  }
 }
 
     function Action({action}) {

@@ -51,19 +51,32 @@
 
   header{
     display: flex;
+    justify-content: space-around;
     background-color: rgb(152, 140, 140);
     position: sticky;
     top: 0%;
     width: 100%;
+    height: fit-content;
     h2{
       text-shadow: 4px 3px 3px;
       text-align: center;
+      font-size: small;
+    }
+
+    &:hover{
+      .controls{
+        display: flex;
+      }
+      h2{ 
+        font-size: small;
+      }
     }
 
   }
 
   .other{
-    padding: 10px;
+    padding: 10%;
+
   }
 
   details{
@@ -80,12 +93,13 @@
   padding: 10px;
   /* font-size: calc(10px + 2vmin); */
   color: black;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  background: url('./assets/travel.jpg')  center/contain;
 
 }
 
-.total_time{
-  display: flex;
+.controls{
+  display: none;
   align-items: center;
 
   font-size: small;
@@ -109,4 +123,12 @@
 .action{
   border: solid 1px black;
   padding: 10px;
+}
+
+.not_allowed{
+  border: solid 1px darkred;
+  padding: 10px;
+  margin: 10px;
+  color: black;
+  background-color: rgb(183, 99, 99);
 }
