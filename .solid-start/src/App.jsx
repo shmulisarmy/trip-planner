@@ -5,6 +5,10 @@ import { For } from "solid-js/web";
 import { getDistance } from "./utils";
 import { events, setEvents } from "./data.js";
 import {Buffer} from "./components/buffer.jsx";
+import {actions, setActions, undo} from "./utils/undo.js"
+import {Action_component} from "./components/Action.jsx"
+
+
 
 import traveling_image from "./assets/favicon.ico";
 
@@ -18,7 +22,6 @@ let dragging = null
 let toSwap = null
 
 
-const [actions, setActions] = createSignal(JSON.parse(localStorage.getItem("actions") || "[]"))
 
 
 createEffect(() => {
@@ -30,29 +33,13 @@ function Actions_log(){
   return (
     <div id="actions">
       {actions().map((action) => <div className="action">
-        <Action   action={action}  />
+        <Action_component   action={action}  />
       </div>)}
     </div>
   )
 }
 
-function undo(){
-  const latest_action = actions().pop()
-  setActions([...actions()])
-  if (latest_action.type == "swap"){
-    const ev = [...events()]
-    const {swapped} = latest_action
-    ev[swapped[0]] = events()[swapped[1]]
-    ev[swapped[1]] = events()[swapped[0]]
-    setEvents(ev);
-  } else if (latest_action.type == "plus"){
-    events()[latest_action.index_of_changed_event].total_time-=latest_action.amount
-    setEvents([...events()])
-  } else if (latest_action.type == "minus"){
-    events()[latest_action.index_of_changed_event].total_time+=latest_action.amount
-    setEvents([...events()])
-  }
-}
+
 
 
 createEffect(() => {
@@ -197,40 +184,3 @@ export default function App() {
 
 }
 
-    function Action({action}) {
-      let el
-      if (action.type == "swap"){
-       
-
-        el =  (<>
-         <div className={styles.action}>
-          
-          <p>swapped {action.swapped[0]} with {action.swapped[1]}</p>
-          <details>
-            <summary>time</summary>
-            <p>{action.time}</p>
-          </details>
-          </div>
-        </>
-        );
-        } else if(action.type == "plus") {
-          el = <div className={styles.action}>
-            
-            added: {action.amount} to event #{action.index_of_changed_event}
-            <details>
-            <summary>time</summary>
-            <p>{action.time}</p>
-          </details>
-          </div>
-        } else if(action.type == "minus") {
-          el = <div className={styles.action}>
-            removed: {action.amount} from event #{action.index_of_changed_event}
-            <details>
-            <summary>time</summary>
-            <p>{action.time}</p>
-          </details>
-          </div>
-        } 
-        return el
-    }
-  
