@@ -1,5 +1,5 @@
 import { createSignal, For, Show, createResource } from "solid-js";
-import Events_C from "./features/events/components/events_container";
+import Events_C from "./features/events/events_container";
 import { change_mode, all_modes } from "./utils";
 
 import { place_holder_value } from "./on_start";

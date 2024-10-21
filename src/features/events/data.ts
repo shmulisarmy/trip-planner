@@ -6,33 +6,6 @@ import {SetStoreFunction} from "solid-js/store"
 
 
 
-const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>] = createStore(
-    {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
-    {
-        name: "Party",
-        duration: 120,
-        location: [2, 5],
-    },
-    {
-        name: "Concert",
-        duration: 180,
-        location: [10, 12],
-    },
-    {
-        name: "Workshop",
-        duration: 90,
-        location: [3, 8],
-    },
-    {
-        name: "Meetup",
-        duration: 60,
-        location: [34, -118],
-    },
-    
-    
-]});
-
-
 const eventsForDay2: Event_[] = [
     {
         name: "Hackathon",
@@ -60,6 +33,36 @@ const eventsForDay2: Event_[] = [
         location: [35, 139],
     }
 ]
+
+const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>] = createStore(
+    {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
+    {
+        name: "Party",
+        duration: 120,
+        location: [2, 5],
+    },
+    {
+        name: "Concert",
+        duration: 180,
+        location: [10, 12],
+    },
+    {
+        name: "Workshop",
+        duration: 90,
+        location: [3, 8],
+    },
+    {
+        name: "Meetup",
+        duration: 60,
+        location: [34, -118],
+    },   
+],
+
+
+list2: eventsForDay2});
+
+
+
 
 createEffect(() => {
     localStorage.setItem("eventsList", JSON.stringify(events.list))
