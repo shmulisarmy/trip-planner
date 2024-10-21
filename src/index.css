@@ -46,6 +46,7 @@ button {
 
 nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -165,9 +166,12 @@ nav {
 #event_week {
 
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
 }
+
+  
 
 .change_time_to_size_multiplier {
   display: flex;

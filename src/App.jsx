@@ -6,7 +6,6 @@ import { change_time_to_size_multiplier_component } from "./components/buttons/c
 import { toggle_collapse_button } from "./features/events/components/buttons/toggle_collapse";
 import logo from "./assets/favicon.ico"
 
-const [count, setCount] = createSignal(0);
 function App() {
   return (
     <>
