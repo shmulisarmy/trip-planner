@@ -21,7 +21,7 @@ button {
   transform: scale(1.01);
   background-color: var(--color);
   color: var(--background-color);
-  span{
+  span, .content{
     color: var(--background-color);
     
   }
