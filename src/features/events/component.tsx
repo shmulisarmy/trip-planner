@@ -44,6 +44,7 @@ function Event_C({
 
   
   let resizeBox: undefined | HTMLDivElement;
+  let input_el: HTMLInputElement|undefined
   const event_image_size = !event_size_callapse ? "90px" : "40px";
   const event_style = event_size_callapse
     ? {
@@ -106,6 +107,13 @@ function Event_C({
           minutes long
         </p>
       </div>
+      <form>
+          <input ref={input_el} type="number" />
+          <button onclick={() => {
+            if (!input_el)return //turn off "'input_el' is possibly 'undefined'.ts(18048)'" warning 
+            set_event_duration(index, JSON.parse(input_el.value))
+            }}>change size</button>
+      </form>
       <hr />
     </div>
   );

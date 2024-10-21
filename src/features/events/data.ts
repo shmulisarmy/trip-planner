@@ -5,6 +5,7 @@ import { Accessor, Setter } from "solid-js"; // ✅ Correct import.
 import {SetStoreFunction} from "solid-js/store"
 
 
+
 const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>] = createStore(
     {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
     {
@@ -29,7 +30,7 @@ const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>
     },
     
     
-]}, {equals: false});
+]});
 
 
 const eventsForDay2: Event_[] = [
