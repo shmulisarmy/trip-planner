@@ -3,6 +3,8 @@ import { stuff } from "./data";
 import { get_difference } from "./utils";
 import { saved_resize_event } from "./state";
 import {mouse} from "./browser_state_and_utils"
+import settings from "./settings";
+import {size_to_time_multiplier} from "./settings"
 
 const { events, setEvents } = stuff;
 
@@ -45,8 +47,8 @@ setInterval(() => {
       saved_resize_event.events_accessor_key &&
       !mouse.is_down
     ) {
-      set_event_duration(saved_resize_event.events_accessor_key, saved_resize_event.index, saved_resize_event.size);
       saved_resize_event.completed = true;
+      set_event_duration(saved_resize_event.events_accessor_key, saved_resize_event.index, saved_resize_event.size*settings.size_to_time_multiplier);
     }
   }
 , 10);

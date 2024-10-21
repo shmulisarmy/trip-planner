@@ -23,7 +23,7 @@ function Event_Day({events_accesor_key}: {events_accesor_key: string}) {
   console.log(events);
   return (
     <>
-      <div id="events">
+      <div class="event-container">
         {events[events_accesor_key].map((event, index) => {
           const el = (
             <Event_C

@@ -22,7 +22,7 @@ body{
   --background-color: rgb(60, 18, 60);
 }
 
-#events{
+.event-container{
   /* transform: scale(.6); */
   .buffer{
     width: 100%;
@@ -76,4 +76,12 @@ body{
 #event_week{
   display: flex;
   justify-content: center;
+}
+
+.change_time_to_size_multiplier{
+  margin: 10px;
+  padding: 10px;
+  border: solid 1px;
+  background-color: var(--background-color);
+  color: var(--color);
 }

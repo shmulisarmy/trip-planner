@@ -6,6 +6,7 @@ import { event_size_callapse } from "../settings";
 import {
   time_to_size_multiplier,
 } from "../settings";
+import settings from "../settings";
 import { time_display } from "../utils";
 import { dragInfo } from "../state";
 
@@ -46,7 +47,7 @@ export function Event_C({
   const event_image_size = !event_size_callapse ? "90px" : "40px";
   const event_style = event_size_callapse
     ? {
-        height: `${Math.round(duration * time_to_size_multiplier)}px`,
+        height: `${Math.round(duration * settings.time_to_size_multiplier)}px`,
         border: "dashed 1px var(--color)",
       }
     : { border: "dashed 1px var(--color)" };

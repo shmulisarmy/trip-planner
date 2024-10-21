@@ -59,7 +59,7 @@ const [events, setEvents]: [{[key: string]: Event_[]}, SetStoreFunction<{[key: s
 ],
 
 
-list2: eventsForDay2});
+list2: JSON.parse(localStorage.getItem("eventsList2") || "null") || eventsForDay2});
 
 
 
