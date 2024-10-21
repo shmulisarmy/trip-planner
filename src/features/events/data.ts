@@ -2,10 +2,11 @@ import { createEffect, createSignal } from "solid-js";
 import Event_ from "./types"
 import {createStore} from "solid-js/store"
 import { Accessor, Setter } from "solid-js"; // ✅ Correct import.
+import {SetStoreFunction} from "solid-js/store"
 
 
-const [events, setEvents]: [Accessor<Event_[]>, Setter<Event_[]>] = createSignal(
-    JSON.parse(localStorage.getItem("events") || "null") || [
+const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>] = createStore(
+    {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
     {
         name: "Party",
         duration: 120,
@@ -27,7 +28,9 @@ const [events, setEvents]: [Accessor<Event_[]>, Setter<Event_[]>] = createSignal
         location: [34, -118],
     },
     
-]);
+    
+]}, {equals: false});
+
 
 const eventsForDay2: Event_[] = [
     {
@@ -58,7 +61,7 @@ const eventsForDay2: Event_[] = [
 ]
 
 createEffect(() => {
-    localStorage.setItem("events", JSON.stringify(events()))
+    localStorage.setItem("eventsList", JSON.stringify(events.list))
 })
 
 console.log(events);
