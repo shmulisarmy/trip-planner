@@ -4,12 +4,14 @@ import { change_mode, all_modes } from "./utils";
 import { change_time_to_size_multiplier_component } from "./components/buttons/change_time_to_size_multiplier";
 
 import { toggle_collapse_button } from "./features/events/components/buttons/toggle_collapse";
+import logo from "./assets/favicon.ico"
 
 const [count, setCount] = createSignal(0);
 function App() {
   return (
     <>
       <nav>
+        <img src={logo} alt="" />
           {change_time_to_size_multiplier_component}
         <div class="drop-down">
           <span>drop down</span>

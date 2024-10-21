@@ -1,22 +1,22 @@
-:root{
+:root {
   --background-color: white;
   --color: black;
   --color-accent: lightblue;
 }
 
-body{
+body {
   background-color: var(--background-color);
   margin: 0%;
 }
 
 
-button{
+button {
   border-radius: 10px;
   background-color: var(--background-color);
   color: var(--color);
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
   transform: scale(1.01);
   background-color: var(--color);
@@ -24,63 +24,79 @@ button:hover{
   /* transition: .1s; */
 }
 
-.dark-mode{
+.dark-mode {
   --background-color: black;
   --color: white;
 }
 
-.chockboard-mode{
+.chockboard-mode {
   --background-color: rgb(52, 71, 51);
   --color: rgb(235, 192, 111);
 }
-.pretty-mode{
+
+.pretty-mode {
   --color: rgb(226, 168, 233);
   --background-color: rgb(60, 18, 60);
 }
 
 
-nav{
+nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   background-color: var(--background-color);
   border-bottom: solid 1px var(--color);
-  .links{
+  z-index: 9999;
+
+  .links {
     display: flex;
     justify-content: space-between;
   }
-  
-  .drop-down{
+
+  .drop-down {
     position: relative;
-    .content{
+
+    .content {
       position: absolute;
       border: solid 1px var(--color);
       padding: 20px;
       width: 100px;
       background-color: var(--background-color);
-      display: none; /*only when not hovered*/
-      button{
+      display: none;
+
+      /*only when not hovered*/
+      button {
 
         margin: 4%;
       }
     }
-    &:hover{
+
+    &:hover {
       cursor: pointer;
-      .content{
-      display: block;
+
+      .content {
+        display: block;
       }
     }
+
+   
   }
 
-  a, span{
+  a,
+  span {
     padding: 6px;
     border: solid 1px var(--color);
     color: var(--color);
   }
+
+  img{
+    height: 40px;
+    width: 40px;
+  }
 }
 
-.event-container{
+.event-container {
   /* transform: scale(.6); */
   min-width: fit-content;
   padding: 2%;
@@ -90,15 +106,16 @@ nav{
   border: dashed 3px var(--color);
 
 
-  .buffer{
+  .buffer {
     width: 100%;
-    img{
+
+    img {
       height: 100%;
     }
   }
 }
 
-.event{
+.event {
   /* width: 300px; */
   margin: 4px;
   color: var(--color);
@@ -108,14 +125,15 @@ nav{
   background-color: var(--background-color);
   --button-color: var(--color);
 
-  .lower-text{
+  .lower-text {
     line-height: 2px;
   }
 
   resize: both;
-  
+
 }
-.event:hover{
+
+.event:hover {
   /* background-color: var(--color);
   color: var(--background-color);
   --button-color: var(--background-color); */
@@ -123,8 +141,8 @@ nav{
   cursor: grab;
 }
 
-.event-duration{
-  button{
+.event-duration {
+  button {
     cursor: pointer;
     color: var(--button-color);
     font-size: large;
@@ -132,28 +150,30 @@ nav{
     background: none;
     margin: 4px;
     margin-right: 4px;
-    &:active{
+
+    &:active {
       transform: scale(.6);
     }
   }
 }
 
 
-#event_week{
-  
+#event_week {
+
   display: flex;
   justify-content: space-around;
   gap: 20px;
 }
 
-.change_time_to_size_multiplier{
+.change_time_to_size_multiplier {
   display: flex;
-  align-self: center;
+  align-items: center;
   justify-content: space-around;
   gap: 10px;
-  margin: 10px;
-  padding: 10px;
-  border: solid 1px;
   background-color: var(--background-color);
   color: var(--color);
+
+  button{
+    height: 50%;
+  }
 }
