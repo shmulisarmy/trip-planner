@@ -1,6 +1,6 @@
 
 
-export const saved_resize_event: {index: number|undefined, size: number|undefined} = {index: undefined, size: undefined}
+export const saved_resize_event: {index: number|undefined, size: number|undefined, completed: boolean} = {index: undefined, size: undefined, completed: true}
 
 export let mouse_is_down = false
 

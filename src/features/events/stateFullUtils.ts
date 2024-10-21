@@ -50,10 +50,18 @@ export function set_event_duration(index: number, new_duration: number){
 let lastMouseUp: Date|undefined = undefined
 
 // window.addEventListener("mousedown", () => {mouse_is_down = true; console.log(`mouse_is_down: ${mouse_is_down}`)})
-window.addEventListener("mouseup", () => {
-    const now = new Date()
-    if (lastMouseUp - now < 1000 && saved_resize_event.index && saved_resize_event.size){
+// window.addEventListener("mouseup", () => {
+//     const now = new Date()
+//     if (!saved_resize_event.completed){
+//         set_event_duration(saved_resize_event.index, saved_resize_event.size)
+//         lastMouseUp = now
+//     }
+// })
+
+
+setInterval(() => {
+    if (!saved_resize_event.completed && saved_resize_event.index != undefined && saved_resize_event.size != undefined){
         set_event_duration(saved_resize_event.index, saved_resize_event.size)
-        lastMouseUp = now
-    }
-})
+        saved_resize_event.completed = true
+    }   
+}, 100);

@@ -110,13 +110,11 @@ function Event_C({
     </div>
   );
   const resizeObserver = new ResizeObserver((entries) => {
-    console.assert(entries.length == 1)
-    if (mouse_is_down){
+        console.assert(entries.length == 1)
         saved_resize_event.index = index
         saved_resize_event.size = entries[0].contentRect.height
-        return
-    }
-        set_event_duration(index, entries[0].contentRect.height)
+        saved_resize_event.completed = false
+        console.log(`index: ${saved_resize_event.index}, size: ${saved_resize_event.size}`)
   });
   if (resizeBox) {
     resizeObserver.observe(resizeBox);
