@@ -34,7 +34,7 @@ const eventsForDay2: Event_[] = [
     }
 ]
 
-const [events, setEvents]: [{list: Event_[]}, SetStoreFunction<{list: Event_[]}>] = createStore(
+const [events, setEvents]: [{[key: string]: Event_[]}, SetStoreFunction<{[key: string]: Event_[]}>] = createStore(
     {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
     {
         name: "Party",
@@ -66,6 +66,10 @@ list2: eventsForDay2});
 
 createEffect(() => {
     localStorage.setItem("eventsList", JSON.stringify(events.list))
+})
+
+createEffect(() => {
+    localStorage.setItem("eventsList2", JSON.stringify(events.list2))
 })
 
 console.log(events);

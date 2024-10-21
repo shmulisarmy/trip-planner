@@ -1,8 +1,9 @@
 export const saved_resize_event: {
   index: number | undefined;
   size: number | undefined;
+  events_accessor_key: string | undefined
   completed: boolean;
-} = { index: undefined, size: undefined, completed: true };
+} = { events_accessor_key: undefined, index: undefined, size: undefined, completed: true };
 
 
 export let mouse_is_down = false;

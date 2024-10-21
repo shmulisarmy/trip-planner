@@ -70,3 +70,9 @@ body{
     }
   }
 }
+
+
+#event_week{
+  display: flex;
+  justify-content: center;
+}
