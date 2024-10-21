@@ -1,0 +1,52 @@
+:root{
+  --background-color: white;
+  --color: black;
+  --color-accent: lightblue;
+}
+
+body{
+  background-color: var(--background-color);
+}
+
+.dark-mode{
+  --background-color: black;
+  --color: white;
+}
+
+.chockboard-mode{
+  --background-color: rgb(52, 71, 51);
+  --color: rgb(235, 192, 111);
+}
+.pretty-mode{
+  --color: rgb(226, 168, 233);
+  --background-color: rgb(60, 18, 60);
+}
+
+#events{
+  /* transform: scale(.6); */
+  .buffer{
+    img{
+      height: 100%;
+    }
+  }
+}
+
+.event{
+  margin: 4px;
+  background-color: var(--background-color);
+  color: var(--color);
+  overflow-y: scroll;
+  padding: 10px;
+  transition: color .4s;
+
+  .lower-text{
+    line-height: 2px;
+  }
+  
+}
+.event:hover{
+  background-color: var(--color);
+  color: var(--background-color);
+  cursor: grab;
+}
+
