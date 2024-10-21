@@ -43,12 +43,16 @@ body{
   .lower-text{
     line-height: 2px;
   }
+
+  resize: both;
+  min-width: 300px;
   
 }
 .event:hover{
-  background-color: var(--color);
+  /* background-color: var(--color);
   color: var(--background-color);
-  --button-color: var(--background-color);
+  --button-color: var(--background-color); */
+  border: solid blue 2px;
   cursor: grab;
 }
 

@@ -5,13 +5,13 @@ export function get_distance(locationA: number[], locationB: number[]): number{
     return yDistance + xDistance 
 }
 
-function get_difference(locationA: number, locationB: number): number {
+export function get_difference(locationA: number, locationB: number): number {
     return locationA > locationB ? locationA - locationB : locationB - locationA;
 }
 
 export function time_display(time_as_int: number): string{
     const hour = Math.floor(time_as_int/60)
-    const minute = time_as_int%60
+    const minute = Math.floor(time_as_int%60)
 
     return `${hour}:${minute < 10? `0${minute}`: minute}`
 
