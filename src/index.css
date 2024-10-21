@@ -16,11 +16,15 @@ button {
   color: var(--color);
 }
 
-button:hover {
+.drop-down:hover, button:hover, a:hover {
   cursor: pointer;
   transform: scale(1.01);
   background-color: var(--color);
   color: var(--background-color);
+  span{
+    color: var(--background-color);
+    
+  }
   /* transition: .1s; */
 }
 

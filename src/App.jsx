@@ -17,7 +17,6 @@ function App() {
           <span>drop down</span>
           <div class="content">
             {toggle_collapse_button}
-            <button onclick={() => setCount(count() + 1)}>{count()}</button>
             {all_modes.map((mode) => (
               <button onclick={() => change_mode(mode)}>{mode} mode</button>
             ))}
