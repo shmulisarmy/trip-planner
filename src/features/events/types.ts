@@ -1,7 +1,7 @@
 interface Event_ {
-    name: string;
-    duration: number;
-    location: [number, number]; // Coordinates, e.g., latitude and longitude
+  name: string;
+  duration: number;
+  location: [number, number]; // Coordinates, e.g., latitude and longitude
 }
 
-export default Event_
+export default Event_;
