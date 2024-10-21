@@ -12,6 +12,7 @@ createEffect(() => {
 
 export function render_events() {
   setEvents("list", [...events.list]);
+  setEvents("list2", [...events.list2]);
 }
 
 export function change_event_duration(event_accessor_key: string, index: number, amount: number) {

@@ -25,6 +25,7 @@ body{
 #events{
   /* transform: scale(.6); */
   .buffer{
+    width: 100%;
     img{
       height: 100%;
     }
@@ -32,12 +33,13 @@ body{
 }
 
 .event{
+  /* width: 300px; */
   margin: 4px;
-  background-color: var(--background-color);
   color: var(--color);
   overflow-y: scroll;
   padding: 10px;
   transition: color .4s;
+  background-color: var(--background-color);
   --button-color: var(--color);
 
   .lower-text{
@@ -45,7 +47,6 @@ body{
   }
 
   resize: both;
-  min-width: 300px;
   
 }
 .event:hover{

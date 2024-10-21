@@ -2,7 +2,6 @@ import { createSignal, For, Show, createResource } from "solid-js";
 import Event_Day from "./features/events/components/events_container";
 import { change_mode, all_modes } from "./utils";
 
-import { place_holder_value } from "./on_start";
 import {toggle_collapse_button} from "./features/events/components/buttons/toggle_collapse"
 
 const [count, setCount] = createSignal(0);
