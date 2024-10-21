@@ -6,6 +6,22 @@
 
 body{
   background-color: var(--background-color);
+  margin: 0%;
+}
+
+
+button{
+  border-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+button:hover{
+  cursor: pointer;
+  transform: scale(1.01);
+  background-color: var(--color);
+  color: var(--background-color);
+  /* transition: .1s; */
 }
 
 .dark-mode{
@@ -22,8 +38,58 @@ body{
   --background-color: rgb(60, 18, 60);
 }
 
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-bottom: solid 1px var(--color);
+  .links{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .drop-down{
+    position: relative;
+    .content{
+      position: absolute;
+      border: solid 1px var(--color);
+      padding: 20px;
+      width: 100px;
+      background-color: var(--background-color);
+      display: none; /*only when not hovered*/
+      button{
+
+        margin: 4%;
+      }
+    }
+    &:hover{
+      cursor: pointer;
+      .content{
+      display: block;
+      }
+    }
+  }
+
+  a, span{
+    padding: 6px;
+    border: solid 1px var(--color);
+    color: var(--color);
+  }
+}
+
 .event-container{
   /* transform: scale(.6); */
+  min-width: fit-content;
+  padding: 2%;
+  max-height: 400px;
+  overflow: scroll;
+  background-color: var(--background-color);
+  border: dashed 3px var(--color);
+
+
   .buffer{
     width: 100%;
     img{
@@ -74,11 +140,17 @@ body{
 
 
 #event_week{
+  
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 20px;
 }
 
 .change_time_to_size_multiplier{
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+  gap: 10px;
   margin: 10px;
   padding: 10px;
   border: solid 1px;

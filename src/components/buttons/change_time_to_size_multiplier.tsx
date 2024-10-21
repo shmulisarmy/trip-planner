@@ -2,7 +2,7 @@ import { change_time_to_size_multiplier } from "../../features/events/stateFullS
 
 export const change_time_to_size_multiplier_component = (
   <div class="change_time_to_size_multiplier">
-    <h2>change_time_to_size_multiplier</h2>
+    <p>change box sizes</p>
     <button onclick={() => change_time_to_size_multiplier(-0.1)}>-</button>
     <button onclick={() => change_time_to_size_multiplier(0.1)}>+</button>
   </div>
