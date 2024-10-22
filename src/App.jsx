@@ -7,6 +7,8 @@ import { toggle_collapse_button } from "./features/events/components/buttons/tog
 import logo from "./assets/favicon.ico";
 import { undo_latest_action } from "./features/events/stateFullUtils";
 
+import { test_swap, test_drag } from "./tests/drag_and_swap_events";
+
 function dropDown(tag, content) {
   return (
     <div class="drop-down">
@@ -23,8 +25,13 @@ function App() {
         <img src={logo} alt="" />
         {change_time_to_size_multiplier_component}
 
-
-
+        {dropDown(
+          "tests",
+          <>
+            <button onclick={test_swap}>test swap functionalilty</button>
+            <button onclick={test_drag}>test drag functionalilty</button>
+          </>
+        )}
 
         {dropDown(
           "settings",
