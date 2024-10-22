@@ -8,13 +8,13 @@ Project Description
 
 - [ ] add day time bounds with warning  
 - [ ] ad event time bounds with warning  
-- [ ] make actions so users can ctrl z  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] make actions so users can ctrl z  
 - [x] add button for swapping up and down (assuming in range)  
 - [x] render differnt days dinamicly  
 
