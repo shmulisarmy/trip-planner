@@ -103,12 +103,18 @@ nav {
 
 .event-container {
   /* transform: scale(.6); */
+  margin-top: 50px;
   min-width: fit-content;
+  max-width: 500px;
+  max-height: fit-content;
+  height: 400px;
+  min-height: 400px;
+  resize: both;
   padding: 2%;
-  max-height: 400px;
   overflow: scroll;
   background-color: var(--background-color);
   border: dashed 3px var(--color);
+
 
 
   .buffer {
@@ -129,21 +135,36 @@ nav {
   transition: color .4s;
   background-color: var(--background-color);
   --button-color: var(--color);
+  resize: both;
+
 
   .lower-text {
     line-height: 2px;
   }
 
-  resize: both;
 
+}
+
+@keyframes bounce {
+  25%{
+
+    transform:  scale(1.1);
+  }
+  50%{
+    transform: translateY(-4px) scale(1);
+  }
 }
 
 .event:hover {
   /* background-color: var(--color);
-  color: var(--background-color);
-  --button-color: var(--background-color); */
-  border: solid blue 2px;
+  color: var(--background-color); */
+  --button-color: var(--background-color);
+  transform: scale(1.04);
   cursor: grab;
+  .name{
+    text-shadow: 1px 3px 10px;
+    transition: .5s;
+  }
 }
 
 .event-duration {
@@ -167,8 +188,8 @@ nav {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: center;
+  gap: 100px;
 }
 
   

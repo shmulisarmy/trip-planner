@@ -23,9 +23,9 @@ function App() {
         </div>
 
         <div class="links">
-          <a href="google.com">google.coma</a>
-          <a href="drive.google.com">drive.google.coma</a>
-          <a href="youtube.com">youtube.coma</a>
+          <a href="actions">actions</a>
+          <a href="checkpoints">checkpoints</a>
+          <a href="backlog">backlog</a>
         </div>
       </nav>
 

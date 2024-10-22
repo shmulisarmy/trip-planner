@@ -86,7 +86,7 @@ export function Event_C({
             "font-size": event_size_callapse ? `14px` : "18px",
           }}
         >
-          <h2>{name}</h2>
+          <h2 class="name">{name}</h2>
           <div class="time">
             <p>
               {time_display(start_time)} - {time_display(end_time)}
