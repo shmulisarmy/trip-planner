@@ -1,3 +1,5 @@
+import { Action } from "./classes(uses encapsulation)/actions/swap";
+
 export const saved_resize_event: {
   index: number | undefined;
   size: number | undefined;
@@ -12,3 +14,8 @@ export const dragInfo: {
   dragged_onto: {events_accesor_key: string, index: number} | null;
   grabbing: {events_accesor_key: string, index: number} | null;
 } = { dragged_onto: null, grabbing: null };
+
+
+export const actions: Action[] = [
+  
+]

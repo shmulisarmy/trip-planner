@@ -6,8 +6,8 @@ Project Description
 
 ### Todo
 
-- [ ] add day time bounds  
-- [ ] ad event time bounds  
+- [ ] add day time bounds with warning  
+- [ ] ad event time bounds with warning  
 - [ ] make actions so users can ctrl z  
 
 ### In Progress

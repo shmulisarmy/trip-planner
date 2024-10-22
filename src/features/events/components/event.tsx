@@ -11,11 +11,12 @@ import { dragInfo } from "../state";
 const { events, setEvents } = stuff;
 import {
   change_event_duration,
+  createAction,
   set_event_duration,
-  swap,
 } from "../stateFullUtils";
 import { saved_resize_event } from "../state";
 import { move_grabbed_data_to_right_spot } from "../stateFullUtils";
+import { event_info, Action } from "../classes(uses encapsulation)/actions/swap";
 
 let hidden: HTMLElement; //this is the event element that gets hidden when it starts getting dragged
 let drop_zone: HTMLElement = (
@@ -120,10 +121,10 @@ export function Event_C({
           </div>
         </div>
         <div class="quick-mover-buttons">
-          <button onclick={() => swap(events_accesor_key, index, index - 1)}>
+          <button onclick={() => createAction(new Action("swap", new event_info(events_accesor_key, index), new event_info(events_accesor_key, index-1)))}>
             ∆
           </button>
-          <button onclick={() => swap(events_accesor_key, index, index + 1)}>
+          <button onclick={() => createAction(new Action("swap", new event_info(events_accesor_key, index), new event_info(events_accesor_key, index+1)))}>
             ¥
           </button>
         </div>
