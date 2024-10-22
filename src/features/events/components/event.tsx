@@ -30,14 +30,14 @@ function insertAfter() {
   if (both_events_are_from_same_list){
     let event_list = [...events[dragInfo.dragged_onto.events_accesor_key]];
     // const temp = ev[dragInfo.grabbing?.index];
-    const event_being_moved = event_list.splice(dragInfo.grabbing.index, 1)
+    const [event_being_moved] = event_list.splice(dragInfo.grabbing.index, 1)
 
 
     if (dragInfo.dragged_onto.index > dragInfo.grabbing.index){
       //we minus off one from the index because we are shrinking down the list and the effect is spreading to the dragged_onto_event since its on top
-      insertAt(event_list, dragInfo.dragged_onto.index-1,  event_being_moved)
-    } else{
       insertAt(event_list, dragInfo.dragged_onto.index,  event_being_moved)
+    } else{
+      insertAt(event_list, dragInfo.dragged_onto.index+1,  event_being_moved)
     }
     
     setEvents(dragInfo.grabbing.events_accesor_key, [...event_list]);
