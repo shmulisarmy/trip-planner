@@ -15,3 +15,11 @@ export function time_display(time_as_int: number): string {
 
   return `${hour}:${minute < 10 ? `0${minute}` : minute}`;
 }
+
+export function insertAt(arr: Array<any>, index: number, element: any) {
+    if (index < 0 || index > arr.length) {
+        console.error("Invalid index: out of bounds.");
+        return;
+    }
+    arr.splice(index, 0, element);
+}

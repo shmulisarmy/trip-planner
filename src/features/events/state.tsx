@@ -9,6 +9,6 @@ export const saved_resize_event: {
 export let mouse_is_down = false;
 
 export const dragInfo: {
-  dragged_onto_index: number | null;
-  grabbing_index: number | null;
-} = { dragged_onto_index: null, grabbing_index: null };
+  dragged_onto: {events_accesor_key: string, index: number} | null;
+  grabbing: {events_accesor_key: string, index: number} | null;
+} = { dragged_onto: null, grabbing: null };
