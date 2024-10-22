@@ -4,6 +4,12 @@ import { createAction, undo_latest_action } from "../features/events/stateFullUt
 import { stuff } from "../features/events/data";
 const {events, setEvents} = stuff
 
+
+/**
+ * 
+ * theses tests do and an action and then undo them and make sure that the state of events is the same before as after
+ */
+
 function get_first_event_list_with_at_least_2_events(): [Array<Event_>, string]{
     let found: [Array<Event_>, string] | undefined = undefined
         Object.entries(events).forEach(([event_list_name]) => {
