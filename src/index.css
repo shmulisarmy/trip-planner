@@ -61,6 +61,8 @@ nav {
 
   .drop-down {
     position: relative;
+    z-index: 9999;
+
 
     .content {
       position: absolute;
@@ -69,6 +71,8 @@ nav {
       width: 100px;
       background-color: var(--background-color);
       display: none;
+      z-index: 9999;
+
 
       /*only when not hovered*/
       button {
@@ -118,11 +122,19 @@ nav {
 
 
   .buffer {
+    animation: jump 1s;
     width: 100%;
+    z-index: -1;
 
     img {
       height: 100%;
     }
+  }
+}
+
+@keyframes jump {
+  50%{
+    transform: scale(1.04);
   }
 }
 
@@ -140,6 +152,7 @@ nav {
   background-color: var(--background-color);
   --button-color: var(--color);
   resize: both;
+  position: relative;
 
 
   .lower-text {
@@ -209,4 +222,14 @@ nav {
   button{
     height: 50%;
   }
+}
+
+.quick-mover-buttons{
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 4px;
 }

@@ -23,7 +23,7 @@ export function change_event_duration(event_accessor_key: string, index: number,
   console.log("change_event_duration", { index, amount });
   const new_events = [...events[event_accessor_key]];
   new_events[index] = {
-    ...new_events[index],
+  ...new_events[index],
     duration: new_events[index].duration + amount,
   };
   setEvents(event_accessor_key, new_events);
@@ -90,4 +90,17 @@ export function move_grabbed_data_to_right_spot() {
   } else {
     console.error("Both indexes must be valid numbers.");
   }
+}
+
+/**
+ * this function assumes that the two items that you want to swap are in the same list
+ * @param event_accessor_key 
+ */
+export function swap(event_accessor_key: string, indexA: number, indexB: number){
+  const event_list = [...events[event_accessor_key]];
+  const temp = event_list[indexA]
+  event_list[indexA] = event_list[indexB]
+  event_list[indexB] = temp
+  console.table(event_list)
+  setEvents(event_accessor_key, event_list)
 }

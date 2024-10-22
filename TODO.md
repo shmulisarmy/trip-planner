@@ -6,7 +6,6 @@ Project Description
 
 ### Todo
 
-- [ ] add button for swapping up and down (assuming in range)  
 - [ ] add day time bounds  
 - [ ] ad event time bounds  
 - [ ] make actions so users can ctrl z  
@@ -16,5 +15,6 @@ Project Description
 
 ### Done ✓
 
+- [x] add button for swapping up and down (assuming in range)  
 - [x] render differnt days dinamicly  
 

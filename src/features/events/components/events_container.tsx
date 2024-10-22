@@ -64,13 +64,21 @@ function Event_Day({events_accesor_key}: {events_accesor_key: string}) {
   );
 }
 
+import {For} from "solid-js"
+
 //["list", "list2"] 
 function Event_Week(){
   return (
     <div id="event_week">
-      {Object.entries(events).map(([event_accessor_key, _]) => 
-       <Event_Day events_accesor_key={event_accessor_key}/>
-      )}
+      <For each={Object.entries(events)}>
+        {([event_accessor_key, _]) => 
+        <Event_Day 
+        // key={event_accessor_key} 
+        events_accesor_key={event_accessor_key}/>
+        }
+      </For>
+      {/* {Object.entries(events).map(([event_accessor_key, _]) => 
+      )} */}
     </div>
   )
 }
