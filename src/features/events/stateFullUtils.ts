@@ -5,6 +5,8 @@ import { saved_resize_event } from "./state";
 import {mouse} from "./browser_state_and_utils"
 import settings from "./settings";
 import {size_to_time_multiplier} from "./settings"
+import {dragInfo} from "./state"
+import { time_display, insertAt } from "./utils";
 
 const { events, setEvents } = stuff;
 
@@ -52,3 +54,40 @@ setInterval(() => {
     }
   }
 , 10);
+
+
+export function move_grabbed_data_to_right_spot() {
+  if (dragInfo.dragged_onto && dragInfo.grabbing){
+    /**
+     * @param {}
+     */
+  }
+  const both_events_are_from_same_list = dragInfo.dragged_onto?.events_accesor_key == dragInfo.grabbing?.events_accesor_key;
+  if (both_events_are_from_same_list){
+    let event_list = [...events[dragInfo.dragged_onto.events_accesor_key]];
+    // const temp = ev[dragInfo.grabbing?.index];
+    const [event_being_moved] = event_list.splice(dragInfo.grabbing.index, 1)
+
+
+    if (dragInfo.dragged_onto.index > dragInfo.grabbing.index){
+      //we minus off one from the index because we are shrinking down the list and the effect is spreading to the dragged_onto_event since its on top
+      insertAt(event_list, dragInfo.dragged_onto.index,  event_being_moved)
+    } else{
+      insertAt(event_list, dragInfo.dragged_onto.index+1,  event_being_moved)
+    }
+    
+    setEvents(dragInfo.grabbing.events_accesor_key, [...event_list]);
+  } else if (dragInfo.grabbing != null && dragInfo.dragged_onto != null) {
+    const event_list_of_grabbing_event = [...events[dragInfo.grabbing.events_accesor_key]];
+    const event_list_of_dragged_onto_event = [...events[dragInfo.dragged_onto.events_accesor_key]];
+
+    const event_being_moved = event_list_of_grabbing_event[dragInfo.grabbing.index]
+    insertAt(event_list_of_dragged_onto_event, dragInfo.dragged_onto.index+1,  event_being_moved)
+    
+    event_list_of_grabbing_event.splice(dragInfo.grabbing.index, 1)
+    setEvents(dragInfo.grabbing.events_accesor_key, event_list_of_grabbing_event);
+    setEvents(dragInfo.dragged_onto.events_accesor_key, event_list_of_dragged_onto_event);
+  } else {
+    console.error("Both indexes must be valid numbers.");
+  }
+}

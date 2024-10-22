@@ -126,6 +126,10 @@ nav {
   }
 }
 
+.durring-dragging .buffer{
+  display: none;
+}
+
 .event {
   /* width: 300px; */
   margin: 4px;

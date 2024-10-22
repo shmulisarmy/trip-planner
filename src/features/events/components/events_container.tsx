@@ -64,13 +64,13 @@ function Event_Day({events_accesor_key}: {events_accesor_key: string}) {
   );
 }
 
-
-
+//["list", "list2"] 
 function Event_Week(){
   return (
     <div id="event_week">
-      <Event_Day events_accesor_key="list"/>
-      <Event_Day events_accesor_key="list2"/>
+      {Object.entries(events).map(([event_accessor_key, _]) => 
+       <Event_Day events_accesor_key={event_accessor_key}/>
+      )}
     </div>
   )
 }

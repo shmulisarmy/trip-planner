@@ -34,6 +34,19 @@ const eventsForDay2: Event_[] = [
     }
 ]
 
+const eventsForDay3: Event_[] = [
+    {
+        name: "Webinar",
+        duration: 90,
+        location: [48, 2], // Example remote location
+    },
+    {
+        name: "Board Meeting",
+        duration: 240,
+        location: [35, 139],
+    }
+]
+
 const [events, setEvents]: [{[key: string]: Event_[]}, SetStoreFunction<{[key: string]: Event_[]}>] = createStore(
     {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
     {
@@ -59,7 +72,9 @@ const [events, setEvents]: [{[key: string]: Event_[]}, SetStoreFunction<{[key: s
 ],
 
 
-list2: JSON.parse(localStorage.getItem("eventsList2") || "null") || eventsForDay2});
+list2: JSON.parse(localStorage.getItem("eventsList2") || "null") || eventsForDay2,
+list3: JSON.parse(localStorage.getItem("eventsList3") || "null") || eventsForDay3
+});
 
 
 
@@ -70,6 +85,10 @@ createEffect(() => {
 
 createEffect(() => {
     localStorage.setItem("eventsList2", JSON.stringify(events.list2))
+})
+
+createEffect(() => {
+    localStorage.setItem("eventsList3", JSON.stringify(events.list3))
 })
 
 console.log(events);
