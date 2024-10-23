@@ -1,5 +1,10 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import path from "path"
+
+
+console.log(path.resolve(__dirname, "./src/features/events"))
+console.log("hey im on the vite config page")
 // import devtools from 'solid-devtools/vite';
 
 export default defineConfig({
@@ -17,4 +22,13 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
+
+  resolve: {
+
+    
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "@events": path.resolve(__dirname, "./src/features/events")
+    }
+  }
 });

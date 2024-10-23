@@ -1,6 +1,6 @@
 import { stuff } from "../../data";
 const { events, setEvents } = stuff;
-import {insertAt} from "../../utils"
+import {insertAt} from "@events/utils"
 
 export class event_info {
   event_accessor_key: string; //the reason this is passed in is becuase when we call setEvents(event_accessor_key, -->newState<--) event_accessor_key is used not only for the to retrieve the list but also to set the new data
