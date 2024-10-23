@@ -7,16 +7,25 @@ import { toggle_collapse_button } from "./features/events/components/buttons/tog
 import logo from "./assets/favicon.ico";
 import { undo_latest_action } from "./features/events/stateFullUtils";
 
-import { test_swap, test_drag } from "./tests/drag_and_swap_events";
+import { dropDown } from "./components/drop-down";
 
-function dropDown(tag, content) {
-  return (
-    <div class="drop-down">
-      <span>{tag}</span>
-      <div class="content">{content}</div>
-    </div>
-  );
+const in_testing_mode = true;
+
+const tests = {} 
+
+
+const [testsLoaded, setTestsLoaded] = createSignal(false)
+
+if (in_testing_mode) {
+  import("./tests/drag_and_swap_events").then((t) => {
+    console.log({t})
+    tests.test_drag = t.test_drag
+    tests.test_swap = t.test_swap
+    console.log({tests});
+    setTestsLoaded(true)
+  });
 }
+
 
 function App() {
   return (
@@ -25,13 +34,15 @@ function App() {
         <img src={logo} alt="" />
         {change_time_to_size_multiplier_component}
 
-        {dropDown(
-          "tests",
-          <>
-            <button onclick={test_swap}>test swap functionalilty</button>
-            <button onclick={test_drag}>test drag functionalilty</button>
-          </>
-        )}
+        <Show when={testsLoaded()}>
+          {dropDown(
+            "run tests",
+            <>
+              <button onclick={tests.test_swap}>test swap functionalilty</button>
+              <button onclick={tests.test_drag}>test drag functionalilty</button>
+            </>
+          )}
+        </Show>
 
         {dropDown(
           "settings",

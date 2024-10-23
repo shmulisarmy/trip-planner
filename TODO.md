@@ -6,6 +6,7 @@ Project Description
 
 ### Todo
 
+- [ ] total travel time  
 - [ ] add day time bounds with warning  
 - [ ] ad event time bounds with warning  
 
@@ -14,6 +15,7 @@ Project Description
 
 ### Done ✓
 
+- [x] dinamic import for tests  
 - [x] make actions so users can ctrl z  
 - [x] add button for swapping up and down (assuming in range)  
 - [x] render differnt days dinamicly  

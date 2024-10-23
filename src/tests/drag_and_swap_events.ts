@@ -64,6 +64,7 @@ function same_list(listA: Array<any>, listB: Array<any>): boolean{
 }
 
 export async function test_swap(){
+    console.log("running test_swap....")
     const [event_list, event_list_name]: [Array<Event_>, string] = get_first_event_list_with_at_least_2_events()
     const event_list_before_actions = events[event_list_name]
     createAction(new Action("swap", new event_info(event_list_name, 0), new event_info(event_list_name, 1)))
@@ -78,6 +79,7 @@ export async function test_swap(){
 
 
 export async function test_drag(){
+    console.log("running test_drag....")
     const [[event_listA, event_list_nameA], [event_listB, event_list_nameB]]: [Array<Event_>, string][] = get_first_two_event_lists_with_at_least_1_event()
     const event_lists_before_actions = [events[event_list_nameA], events[event_list_nameB]]
     createAction(new Action("place_on", new event_info(event_list_nameA, 1), new event_info(event_list_nameB, 1)))
