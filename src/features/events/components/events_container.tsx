@@ -14,6 +14,8 @@ const car_image_data =
 
 
 function Event_Day({events_accesor_key}: {events_accesor_key: string}) {
+  let total_travel_time: number = 0 //starts off as 0
+  let total_travel_time_display_element: HTMLElement | undefined = undefined
   console.log({events_accesor_key})
   let current_time = 0;
   createEffect(() => {
@@ -21,46 +23,54 @@ function Event_Day({events_accesor_key}: {events_accesor_key: string}) {
     current_time = 0;
   });
   console.log(events);
-  return (
-    <>
-      <div class="event-container">
-        {events[events_accesor_key].map((event, index) => {
-          const el = (
-            <Event_C
-              {...event}
-              start_time={current_time}
-              end_time={current_time + event.duration}
-              {...{events_accesor_key, index}}
-            />
-          );
-          current_time += event.duration;
-          if (index < events[events_accesor_key].length - 1) {
-            const buffer_time = get_distance(
-              event.location,
-              events[events_accesor_key][index + 1].location
-            );
-            current_time += buffer_time;
-            const buffer_style = event_size_callapse
-              ? {
-                  height: `${Math.round(
-                    buffer_time * time_to_size_multiplier
-                  )}px`,
-                }
-              : { height: "100px" };
+  const el = (<>
+    <div class="event-container">
+      <header style={{position: "sticky", top: "0px", "z-index": 10, "background-color": "var(--background-color)"}}>
 
-            return (
-              <>
-                {el}
-                <div style={buffer_style} class="buffer">
-                  <img src={car_image_data} alt="" />
-                </div>
-              </>
-            );
-          }
-          return el;
-        })}
-      </div>
-    </>
+      <h2 ref={total_travel_time_display_element}></h2>
+      </header>
+      {events[events_accesor_key].map((event, index) => {
+        const el = (
+          <Event_C
+            {...event}
+            start_time={current_time}
+            end_time={current_time + event.duration}
+            {...{ events_accesor_key, index }} />
+        );
+        current_time += event.duration;
+        if (index < events[events_accesor_key].length - 1) {
+          const buffer_time = get_distance(
+            event.location,
+            events[events_accesor_key][index + 1].location
+          );
+          current_time += buffer_time;
+          total_travel_time += buffer_time;
+          const buffer_style = event_size_callapse
+            ? {
+              height: `${Math.round(
+                buffer_time * time_to_size_multiplier
+              )}px`,
+            }
+            : { height: "100px" };
+
+          return (
+            <>
+              {el}
+              <div style={buffer_style} class="buffer">
+                <img src={car_image_data} alt="" />
+              </div>
+            </>
+          );
+        }
+        return el;
+      })}
+    </div>
+  </>)
+
+total_travel_time_display_element.textContent = `travel time: ${total_travel_time}`
+  
+  return (
+    el
   );
 }
 
