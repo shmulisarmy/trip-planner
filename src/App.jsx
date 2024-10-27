@@ -7,27 +7,23 @@ import { toggle_collapse_button } from "./features/events/components/buttons/tog
 import logo from "./assets/favicon.ico";
 import { undo_latest_action } from "./features/events/stateFullUtils";
 
-import { dropDown } from "./components/drop-down";
-
-
+import { DropDown } from "./components/drop-down";
 
 const in_testing_mode = true;
 
-const tests = {} 
+const tests = {};
 
-
-const [testsLoaded, setTestsLoaded] = createSignal(false)
+const [testsLoaded, setTestsLoaded] = createSignal(false);
 
 if (in_testing_mode) {
   import("./tests/drag_and_swap_events").then((t) => {
-    console.log({t})
-    tests.test_drag = t.test_drag
-    tests.test_swap = t.test_swap
-    console.log({tests});
-    setTestsLoaded(true)
+    console.log({ t });
+    tests.test_drag = t.test_drag;
+    tests.test_swap = t.test_swap;
+    console.log({ tests });
+    setTestsLoaded(true);
   });
 }
-
 
 function App() {
   return (
@@ -37,34 +33,47 @@ function App() {
         {change_time_to_size_multiplier_component}
 
         <Show when={testsLoaded()}>
-          {dropDown(
-            "run tests",
-            <>
-              <button onclick={tests.test_swap}>test swap functionalilty</button>
-              <button onclick={tests.test_drag}>test drag functionalilty</button>
-            </>
-          )}
+          <DropDown
+            tag="tests"
+            content={
+              <>
+                <button onclick={tests.test_swap}>
+                  test swap functionality
+                </button>
+                <button onclick={tests.test_drag}>
+                  test drag functionality
+                </button>
+              </>
+            }
+          />
         </Show>
 
-        {dropDown(
-          "settings",
-          <>
-            {toggle_collapse_button}
-            {dropDown(
-              "change mode",
-              <>
-                {all_modes.map((mode) => (
-                  <button onclick={() => change_mode(mode)}>{mode} mode</button>
-                ))}
-              </>
-            )}
-          </>
-        )}
+        <DropDown
+          tag="settings"
+          content={
+            <>
+              {toggle_collapse_button}
+              <DropDown
+                tag="change mode"
+                content={
+                  <>
+                    {all_modes.map((mode) => (
+                      <button onclick={() => change_mode(mode)}>
+                        {mode} mode
+                      </button>
+                    ))}
+                  </>
+                }
+              />
+            </>
+          }
+        />
 
-        {dropDown(
-          "actions",
-          <button onclick={undo_latest_action}>undo (crtl z)</button>
-        )}
+        <DropDown tag="actions" content={<>
+            <button onclick={undo_latest_action}>undo (ctrl+z)</button>
+          </>}/>
+
+
 
         <div class="links">
           <a href="checkpoints">checkpoints</a>

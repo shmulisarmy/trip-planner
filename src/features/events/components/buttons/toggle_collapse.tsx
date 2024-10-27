@@ -1,5 +1,5 @@
 import { toggle_event_size_callapse } from "../../settings";
-import style from "../../../../App.module.css"
+import style from "@/App.module.css"
 
 
 

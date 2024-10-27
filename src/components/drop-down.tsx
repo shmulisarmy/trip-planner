@@ -1,4 +1,4 @@
-export function dropDown(tag: string, content: HTMLElement) {
+export function DropDown({tag, content}: {tag: string, content: Element}) {
     return (
       <div class="drop-down">
         <span>{tag}</span>
