@@ -15,7 +15,6 @@ app.add_middleware(
 
 
 dist = Jinja2Templates(directory="dist")
-
 app.mount("/assets", StaticFiles(directory="dist/assets"), name="assets")
 
 @app.get("/", response_class=HTMLResponse)

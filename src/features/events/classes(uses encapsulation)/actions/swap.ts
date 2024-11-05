@@ -1,6 +1,7 @@
 import { stuff } from "../../data";
 const { events, setEvents } = stuff;
 import {insertAt} from "@events/utils"
+import {scroll_down}  from "@events/utils"
 
 export class event_info {
   event_accessor_key: string; //the reason this is passed in is becuase when we call setEvents(event_accessor_key, -->newState<--) event_accessor_key is used not only for the to retrieve the list but also to set the new data
@@ -26,7 +27,22 @@ export class Action {
     } else if (this.type == "place_on"){
       this.do_place_on()
     }
+
+    this.on_any_action("do");
   }
+  private on_any_action(action_type: string){ {
+    if (action_type == "undo"){
+      const index_of_new_spot = this.eventA.index;
+      scroll_down(this.eventA.event_accessor_key, index_of_new_spot);
+      
+    } else if (action_type == "do"){
+      const index_of_new_spot = this.event_or_spotB.index + 1;
+      scroll_down(this.event_or_spotB.event_accessor_key, index_of_new_spot);
+    }
+  }
+
+  }
+
   do_place_on(){
     const both_events_are_from_same_list = this.eventA.event_accessor_key == this.event_or_spotB.event_accessor_key;
     if (both_events_are_from_same_list){
@@ -113,6 +129,9 @@ export class Action {
         this.different_list_swap
       }
     }
+
+    this.on_any_action("undo");
+
   }
 
   /**

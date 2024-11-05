@@ -2,6 +2,7 @@
   --background-color: white;
   --color: black;
   --color-accent: lightblue;
+  --primary-color: #b318f0;
 }
 
 body {
@@ -238,3 +239,7 @@ nav {
 }
 
 
+.event:hover {
+  cursor: grabbing;
+  border: solid 1px var(--primary-color);
+}

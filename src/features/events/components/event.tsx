@@ -67,6 +67,7 @@ export function Event_C({
     <div
       ref={resizeBox}
       class="event"
+      id={`event-${index}`}
       style={event_style}
       draggable="true"
       ondrag={() => {
