@@ -181,7 +181,8 @@ nav {
   color: var(--background-color); */
   --button-color: var(--background-color);
   transform: scale(1.04);
-  cursor: grab;
+  cursor: grabbing;
+  border: solid 1px purple;
   .name{
     text-shadow: 1px 3px 10px;
     transition: .5s;
@@ -239,7 +240,3 @@ nav {
 }
 
 
-.event:hover {
-  cursor: grabbing;
-  border: solid 1px var(--primary-color);
-}
