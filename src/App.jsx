@@ -16,7 +16,7 @@ const tests = {};
 const [testsLoaded, setTestsLoaded] = createSignal(false);
 
 if (in_testing_mode) {
-  import("./tests/drag_and_swap_events").then((t) => {
+  import("./tests/drag_and_swap_events.test").then((t) => {
     console.log({ t });
     tests.test_drag = t.test_drag;
     tests.test_swap = t.test_swap;

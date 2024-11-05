@@ -109,19 +109,30 @@ nav {
   }
 }
 
+.event-day{
+  margin-top: 20px;
+
+  /* min-width: fit-content; */
+  min-width: 400px;
+
+
+  resize: both;
+  padding: 2%;
+}
+
 .event-container {
   /* transform: scale(.6); */
-  margin-top: 50px;
-  min-width: fit-content;
-  max-width: 500px;
+
+  padding: 10%;
+  overflow: scroll;
+  background-color: var(--background-color);
+
   max-height: fit-content;
   height: 400px;
   min-height: 400px;
-  resize: both;
-  padding: 2%;
-  overflow: scroll;
-  background-color: var(--background-color);
+ 
   border: dashed 3px var(--color);
+
 
 
 
@@ -209,9 +220,12 @@ nav {
 #event_week {
 
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
   gap: 100px;
+
+  overflow-x: scroll;
+  transform: scale(.9);
 }
 
   
