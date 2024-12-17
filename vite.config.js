@@ -31,6 +31,6 @@ export default defineConfig({
       "@events": path.resolve(__dirname, "./src/features/events")
     }
   },
-  base: '/trello/', // Replace 'repo-name' with your GitHub repository name
+  base: '/trip-planner/', // Replace 'repo-name' with your GitHub repository name
 
 });
