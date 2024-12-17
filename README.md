@@ -1,7 +1,7 @@
 ## Usage
 
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI-k-i5lK6KAmKiSjniwTKnkc5QlFA8iaA6g&s)
-url: https://github.com/shmulisarmy/trip-planner
+url: http://localhost:3000/event_calender
 
 Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
 
