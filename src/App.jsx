@@ -88,8 +88,8 @@ function Nav() {
         <div class="links">
           <a href="checkpoints">checkpoints</a>
           <a href="backlog">backlog</a>
-          <A href="/event_calender">events</A>
-          <A href="/scout">scout</A>
+          <a href="/event_calender">events</a>
+          <a href="/scout">scout</a>
         </div>
       </nav>
     </div>
@@ -107,6 +107,11 @@ function InAllRoutes() {
 
 function App() {
   return (
+    <>
+    <InAllRoutes/>
+    <Event_Week />
+    </>)
+  {/* </>
     <>
       <Router>
       <Route
@@ -137,8 +142,7 @@ function App() {
           )}
         />
       </Router>
-    </>
-  );
+    </> */}
 }
 
 export default App;

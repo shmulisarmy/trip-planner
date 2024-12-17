@@ -1,4 +1,3 @@
-import { Router, Route, A } from "@solidjs/router";
 
 function Event_schedular() {
   return (
@@ -20,8 +19,7 @@ function Event_picker(){
         <>
         <nav>
             {Object.keys(routes).map(route => 
-
-                <A href={route}>{route}</A>
+                <div></div>
             )}
         </nav>
         <main>
@@ -44,10 +42,10 @@ const routes = {
 export default function Routes() {
   return (
     <section style={{ color: "white" }}>
-      <Router>
+      {/* <Router>
         <Route path="/events" component={Event_schedular} />
         <Route path="/event_picker" component={Event_picker} />
-      </Router>
+      </Router> */}
     </section>
   );
 }

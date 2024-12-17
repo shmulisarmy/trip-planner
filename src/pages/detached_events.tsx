@@ -19,8 +19,8 @@ function DetachedEvent({ location, index }: {location: Location, index: number})
   export default function DetachedEvents() {
     return (
       <div class="content" id={styles.detached_events}>
-        <Show when={detachedEvents.length > 0} fallback={<p>you have no detached events, you can create some at <A href="/scout"> this page</A></p>}>
-          <p >each of these events can be dragged and dropped into your event calendar at <A href="/event_calender">this page</A></p>
+        <Show when={detachedEvents.length > 0} fallback={<p>you have no detached events, you can create some at <a href="/scout"> this page</a></p>}>
+          <p >each of these events can be dragged and dropped into your event calendar at <a href="/event_calender">this page</a></p>
         </Show>
           {Array.from(detachedEvents).map((location, index) => <DetachedEvent key={index} index={index} location={location} />)}
       </div>
