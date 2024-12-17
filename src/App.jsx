@@ -109,6 +109,15 @@ function App() {
   return (
     <>
       <Router>
+      <Route
+          path="/"
+          component={() => (
+            <>
+              <InAllRoutes/>
+              <Event_Week />
+            </>
+          )}
+        />
         <Route
           path="/scout"
           component={() => (

@@ -30,5 +30,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       "@events": path.resolve(__dirname, "./src/features/events")
     }
-  }
+  },
+  base: '/trello/', // Replace 'repo-name' with your GitHub repository name
+
 });
