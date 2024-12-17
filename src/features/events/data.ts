@@ -6,91 +6,41 @@ import {SetStoreFunction} from "solid-js/store"
 
 
 
-const eventsForDay2: Event_[] = [
-    {
-        name: "Hackathon",
-        duration: 480,
-        location: [37, -122],
-    },
-    {
-        name: "Festival",
-        duration: 600,
-        location: [51, 0],
-    },
-    {
-        name: "Networking Event",
-        duration: 45,
-        location: [41, -87],
-    },
-    {
-        name: "Webinar",
-        duration: 90,
-        location: [48, 2], // Example remote location
-    },
-    {
-        name: "Board Meeting",
-        duration: 240,
-        location: [35, 139],
-    }
-]
-
-const eventsForDay3: Event_[] = [
-    {
-        name: "Webinar",
-        duration: 90,
-        location: [48, 2], // Example remote location
-    },
-    {
-        name: "Board Meeting",
-        duration: 240,
-        location: [35, 139],
-    }
-]
-
-const [events, setEvents]: [{[key: string]: Event_[]}, SetStoreFunction<{[key: string]: Event_[]}>] = createStore(
-    {list: JSON.parse(localStorage.getItem("eventsList") || "null") || [
-    {
-        name: "Party",
-        duration: 120,
-        location: [2, 5],
-    },
-    {
-        name: "Concert",
-        duration: 180,
-        location: [10, 12],
-    },
-    {
-        name: "Workshop",
-        duration: 90,
-        location: [3, 8],
-    },
-    {
-        name: "Meetup",
-        duration: 60,
-        location: [34, -118],
-    },   
-],
+const initialEvents: {[key: string]: Event_[]} = {}
+for (const day of JSON.parse(localStorage.getItem("all-event-days") || "[]")) {
+    initialEvents[`events-${day}`] = JSON.parse(localStorage.getItem(`events-${day}`) || "[]")
+}
 
 
-list2: JSON.parse(localStorage.getItem("eventsList2") || "null") || eventsForDay2,
-list3: JSON.parse(localStorage.getItem("eventsList3") || "null") || eventsForDay3
-});
+const [events, setEvents] = createStore<{[key: string]: Event_[]}>(
+    initialEvents 
+);
 
 
 
 
-createEffect(() => {
-    localStorage.setItem("eventsList", JSON.stringify(events.list))
-})
 
-createEffect(() => {
-    localStorage.setItem("eventsList2", JSON.stringify(events.list2))
-})
 
-createEffect(() => {
-    localStorage.setItem("eventsList3", JSON.stringify(events.list3))
-})
 
-console.log(events);
+
+for (const key in events) {
+    createEffect(() => {
+        localStorage.setItem(key, JSON.stringify(events[key]))
+    })
+}
+
+
+export function add_event_day(day: string){
+    
+    const all_event_days = JSON.parse(localStorage.getItem("all-event-days") || "[]")
+    all_event_days.push(day)
+    localStorage.setItem("all-event-days", JSON.stringify(all_event_days))
+    
+    setEvents(`events-${day}`, [])
+    createEffect(() => {  
+        localStorage.setItem(`events-${day}`, JSON.stringify(events[`events-${day}`]))
+    })
+}
+
 
 export const stuff = {events, setEvents}

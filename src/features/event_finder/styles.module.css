@@ -1,0 +1,33 @@
+:root {
+    --background-color: #fff;
+    --color: #000;
+}
+
+#location_container {
+    margin: 10px;
+
+        display: grid;    
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        
+         overflow-x: scroll;
+         
+}
+
+
+.location{
+        margin: 30px;
+        padding: 10px;
+        background-color: var(--background-color);
+        color: var(--color);
+        transition: color .4s;
+        border: solid 1px var(--color);
+        border-radius: 10px;
+        
+        iframe{
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+        }
+}
+
+

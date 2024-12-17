@@ -10,12 +10,9 @@ import { Action, event_info } from "./classes(uses encapsulation)/actions/swap";
 
 const { events, setEvents } = stuff;
 
-createEffect(() => {
-  console.table(events.list);
-});
 
 export function render_events() {
-  setEvents("list", [...events.list]);
+    setEvents(all_events => all_events);
 }
 
 export function change_event_duration(event_accessor_key: string, index: number, amount: number) {

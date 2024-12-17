@@ -1,6 +1,6 @@
-import { stuff } from "../data";
+import { add_event_day, stuff } from "../data";
 import { get_distance } from "../utils";
-import { createEffect } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { event_size_callapse } from "../settings";
 import { time_to_size_multiplier } from "../settings";
 
@@ -14,8 +14,7 @@ const car_image_4 =
 
 const car_images = [car_image_1, car_image_2, car_image_3, car_image_4];
 function Event_Day({ events_accesor_key }: { events_accesor_key: string }) {
-  let total_travel_time: number = 0; //starts off as 0
-  let total_travel_time_display_element: HTMLElement | undefined = undefined;
+  const [total_travel_time, set_total_travel_time] = createSignal(0); //starts off as 0
   console.log({ events_accesor_key });
   let current_time = 0;
   createEffect(() => {
@@ -34,7 +33,7 @@ function Event_Day({ events_accesor_key }: { events_accesor_key: string }) {
             "background-color": "var(--background-color)",
           }}
         >
-          <h2 ref={total_travel_time_display_element}></h2>
+          <h1>{events_accesor_key}</h1>
         </header>
         <div
           class="event-container"
@@ -56,7 +55,7 @@ function Event_Day({ events_accesor_key }: { events_accesor_key: string }) {
                 events[events_accesor_key][index + 1].location
               );
               current_time += buffer_time;
-              total_travel_time += buffer_time;
+              set_total_travel_time(prev => prev + buffer_time);
               const buffer_style = event_size_callapse
                 ? {
                     height: `${Math.round(
@@ -77,32 +76,39 @@ function Event_Day({ events_accesor_key }: { events_accesor_key: string }) {
             return el;
           })}
         </div>
+        <h2>travel time: {total_travel_time()}</h2>
+
       </div>
     </>
   );
 
-  total_travel_time_display_element.textContent = `travel time: ${total_travel_time}`;
 
   return el;
 }
 
 import { For } from "solid-js";
 
+
 //["list", "list2"]
 function Event_Week() {
+  let input_ref: HTMLInputElement | undefined;
   return (
+    <>
     <div id="event_week">
       <For each={Object.entries(events)}>
-        {([event_accessor_key, _]) => (
-          <Event_Day
-            // key={event_accessor_key}
+        {([event_accessor_key, _]) => {
+          return(
+            <Event_Day
             events_accesor_key={event_accessor_key}
-          />
-        )}
+            />
+          )}}
       </For>
       {/* {Object.entries(events).map(([event_accessor_key, _]) => 
       )} */}
     </div>
+        <input type="text" ref={input_ref} />
+        <button onClick={() => add_event_day(input_ref!.value)}>add day</button>
+      </>
   );
 }
 
